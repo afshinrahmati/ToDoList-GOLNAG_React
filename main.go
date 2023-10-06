@@ -17,11 +17,13 @@ func helloWorld(c *fiber.Ctx) error {
 
 func setupRoutes(app *fiber.App) {
 	app.Get("/todos", models.GetTodos)
+	app.Get("/todos/:id", models.GetTodoById)
+	app.Post("/todos", models.GetTodos)
 }
 
 func initDatabse() {
 	var err error
-	dsn := "host=127.0.0.1 user=postgres password=afvsa9899 dbname=goTodo port=5432"
+	dsn := "host=127.0.0.1 user=postgres password=afvsa dbname=goTodo port=5432"
 	database.DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("Faild to connect to database!")
